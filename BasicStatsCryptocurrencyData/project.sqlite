@@ -1,0 +1,56 @@
+ -- Viewing transaction data from a cryptocurrency organization
+ -- Columns [id,	user_id,	date,	currency,	money_in,	money_out]
+ SELECT *
+ FROM transactions;
+ 
+ -- Summing the total money they brought in
+ SELECT SUM(money_in)
+ FROM transactions;
+ 
+  -- Summing the total money they sold
+ SELECT SUM(money_out)
+ FROM transactions;
+ 
+ -- Ratio of Bitcoin transactions
+ SELECT COUNT(money_in)
+ FROM transactions;
+ 
+ SELECT COUNT(money_in)
+ FROM transactions -- 43
+ WHERE currency = "BIT"; -- 21
+ 
+ -- Largest transaction on the books?
+ -- 6000 in / 15047 out
+ SELECT MAX(money_in), MAX(money_out)
+ FROM transactions;
+ 
+ -- Avg money in transaction for Ethereum?
+ SELECT AVG(money_in)
+ FROM transactions
+ WHERE currency = "ETH";
+ 
+ -- Build a ledger based on dates
+ SELECT date, ROUND(AVG(money_in), 2), ROUND(AVG(money_out), 2)
+ FROM transactions
+ GROUP BY 1;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

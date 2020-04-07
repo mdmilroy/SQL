@@ -1,0 +1,38 @@
+/* SELECT *
+FROM startups; */
+
+/* 10 columns [name, location, category, employees, raised, valuation, founded, stage, ceo, info] */
+/* 70 companies in this dataset */
+SELECT COUNT(name)
+FROM startups;
+
+/* The total value of all companies in dataset? */
+SELECT SUM(valuation)
+FROM startups;
+
+/* Most raised by a company, during "Seed" stage */
+SELECT MAX(raised)
+FROM startups
+WHERE stage = "Seed";
+
+/* Year of the company first founded */
+SELECT MIN(founded)
+FROM startups;
+
+/* Various valuations of sectors */
+SELECT category, ROUND(AVG(valuation), 2)
+FROM startups
+GROUP BY 1
+ORDER BY 2 DESC;
+
+/* Comparing markets; Most competitive markets */
+SELECT category, COUNT(*)
+FROM startups
+GROUP BY 1
+HAVING COUNT(*) > 3;
+
+/* Average size of Startups by location */
+SELECT location, AVG(employees)
+FROM startups
+GROUP BY 1
+HAVING AVG(employees) > 500;

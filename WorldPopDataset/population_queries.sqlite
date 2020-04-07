@@ -1,0 +1,82 @@
+-- Number of entries from Africa 
+SELECT COUNT(*)
+FROM countries
+WHERE continent = 'Africa';
+
+SELECT COUNT(*) from countries where
+continent = 'Africa';
+
+-- Total pop of Oceania in 2005
+SELECT countries.continent, year, SUM(population)
+FROM population_years
+LEFT JOIN countries
+	ON population_years.country_id = countries.id
+WHERE countries.continent = 'Oceania'
+AND population_years.year = 2005
+GROUP BY continent;
+
+SELECT SUM(population) FROM population_years
+INNER JOIN countries ON
+countries.id = population_years.country_id
+WHERE year = 2005
+AND continent = 'Oceania';
+
+-- Avg pop of South American countries in 2003
+SELECT year, AVG(population)
+FROM population_years
+LEFT JOIN countries
+	ON population_years.country_id = countries.id
+WHERE countries.continent = 'South America'
+AND population_years.year = 2003;
+
+SELECT AVG(population) FROM population_years
+INNER JOIN countries ON
+countries.id = population_years.country_id
+WHERE year = 2003
+AND continent = 'South America';
+
+-- Smallest pop in 2007
+SELECT countries.name, year, MIN(population)
+FROM population_years
+LEFT JOIN countries
+	ON population_years.country_id = countries.id
+WHERE population_years.year = 2007;
+
+SELECT MIN(population), name FROM population_years
+INNER JOIN countries ON
+countries.id = population_years.country_id
+WHERE year = 2007;
+
+-- Avg pop of Poland in this timespan
+SELECT countries.name, AVG(population)
+FROM population_years
+LEFT JOIN countries
+	ON population_years.country_id = countries.id
+WHERE countries.name = 'Poland';
+
+SELECT AVG(population), name FROM population_years
+INNER JOIN countries ON
+countries.id = population_years.country_id
+WHERE name = 'Poland';
+
+-- Number of countries containing "The"
+SELECT COUNT(*)
+FROM countries
+WHERE name LIKE '%The%';
+
+SELECT COUNT(*) FROM countries
+where name LIKE "%The%";
+
+-- Total pop per continent in 2010
+SELECT countries.continent, year, SUM(population)
+FROM population_years
+LEFT JOIN countries
+	ON population_years.country_id = countries.id
+WHERE population_years.year = 2010
+GROUP BY continent;
+
+SELECT SUM(population), continent FROM population_years
+INNER JOIN countries ON
+countries.id = population_years.country_id
+WHERE year = 2010
+GROUP BY continent;
